@@ -1,50 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Mail, Menu, X, Briefcase, GraduationCap, Award, ExternalLink, Download, Sparkles, MessageSquare, Send, Loader2 } from 'lucide-react';
-
-// --- GEMINI API CONFIGURATION ---
-const apiKey = ""; // Runtime environment provides this key.
-
-const callGemini = async (prompt, systemContext = "") => {
-  if (!apiKey) {
-    console.error("API Key is missing.");
-    return "Error: API Key is missing. Please check the environment configuration.";
-  }
-
-  const fullPrompt = systemContext 
-    ? `Context: ${systemContext}\n\nQuestion/Task: ${prompt}`
-    : prompt;
-
-  try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: fullPrompt }] }],
-          generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 500,
-          },
-        }),
-      }
-    );
-
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || `HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
-  } catch (error) {
-    console.error("Gemini API Error:", error);
-    return "Sorry, I couldn't process your request at this moment. Please try again later.";
-  }
-};
-
+import { ChevronLeft, ChevronRight, Mail, Menu, X, Briefcase, GraduationCap, Award, ExternalLink, Download } from 'lucide-react';
 
 // --- DATA: UX 용어 및 표현 전면 검수 완료 (Revised for Global Standards) ---
 const portfolioData = [
@@ -58,8 +13,7 @@ const portfolioData = [
       <div className="flex flex-col justify-center h-full">
          {/* 문구 삭제 요청 반영 */}
       </div>
-    ),
-    rawText: "Okyu Choi Portfolio. Product Designer. Relentlessly Simplifying Financial Complexity."
+    )
   },
   // Page 2: Intro & Resume
   {
@@ -88,8 +42,7 @@ const portfolioData = [
           </ul>
         </div>
       </div>
-    ),
-    rawText: "Introduction. I specialize in removing friction from legacy financial services. Experience: Samsung Card, Hanwha Life, LG CNS. Education: KAIST (M.S), Univ of Tsukuba (B.A)."
+    )
   },
   // Page 3: Hanwha Life Claim (Intro)
   {
@@ -121,8 +74,7 @@ const portfolioData = [
           <p className="text-gray-600 text-sm">Lead Product Designer (Planning, UX/UI, UX Writing)</p>
         </div>
       </div>
-    ),
-    rawText: "Project: Fail-proof Insurance Claim Experience. Achievements: Reduced returns by 480/month, +15.4% mobile claims, 4.2 App Store Rating. Role: Lead Product Designer."
+    )
   },
   // Page 4: Hanwha Life Claim (Problem)
   {
@@ -151,8 +103,7 @@ const portfolioData = [
           </p>
         </div>
       </div>
-    ),
-    rawText: "Problem: Users struggled with jargon and complex forms. High drop-off at Details Input and Document Upload. VOC: 'Photo was blurry, claim rejected'."
+    )
   },
   // Page 5: Hanwha Life Claim (Solution 1)
   {
@@ -180,8 +131,7 @@ const portfolioData = [
           </p>
         </div>
       </div>
-    ),
-    rawText: "Solution: UX Writing - Changed 'Beneficiary' to 'Person receiving money'. Progressive Disclosure - One Thing Per Page pattern to reduce cognitive load."
+    )
   },
   // Page 6: Hanwha Life Claim (Solution 2)
   {
@@ -205,8 +155,7 @@ const portfolioData = [
           </ul>
         </div>
       </div>
-    ),
-    rawText: "Solution: Error Prevention. Solved blurry photo issues with Guide Frame and Sharpness Check validation step."
+    )
   },
   // Page 7: Hanwha Life Claim (Solution 3)
   {
@@ -236,8 +185,7 @@ const portfolioData = [
           </div>
         </div>
       </div>
-    ),
-    rawText: "Solution: Peak-End Rule. Asked for app review right after submission success. Impact: Rating increased from 1.8 to 4.2. Review count increased 8.3x."
+    )
   },
   // Page 8: Hanwha App Renewal (Intro)
   {
@@ -264,8 +212,7 @@ const portfolioData = [
           </div>
         </div>
       </div>
-    ),
-    rawText: "Project 2: App Renewal. Concept: Agent-Managed to Self-Managed. Results: +140k MAU, +1.5M Total Downloads."
+    )
   },
   // Page 9: Hanwha App Renewal (Problem)
   {
@@ -288,8 +235,7 @@ const portfolioData = [
           </p>
         </div>
       </div>
-    ),
-    rawText: "Problem: Insurance apps are low engagement (6 visits/month). Hypothesis: Replicating human agent 'care' via app will increase visitation."
+    )
   },
   // Page 10: Hanwha App Renewal (Solution)
   {
@@ -312,8 +258,7 @@ const portfolioData = [
           </p>
         </div>
       </div>
-    ),
-    rawText: "Solution: Digital Nudges (Personalized notifications for birthdays/updates). Value-First Info (Expected Pension Amount instead of product names)."
+    )
   },
   // Page 11: LG CNS MyData (Intro)
   {
@@ -333,8 +278,7 @@ const portfolioData = [
            <strong>Achievement:</strong> Secured 200,000 users within 3 months and acquired the first MyData license for a non-financial IT company.
         </div>
       </div>
-    ),
-    rawText: "Project 3: LG CNS Haru Jogak MyData Platform. Strategy: Combine Financial Data with Lifestyle Data. Achievement: 200k users in 3 months, First non-financial MyData license."
+    )
   },
   // Page 12: LG CNS MyData (Detail)
   {
@@ -356,8 +300,7 @@ const portfolioData = [
            <div className="bg-gray-100 p-2 rounded">Lifestyle Data<br/><span className="text-gray-900 font-bold">Location, Search</span></div>
         </div>
       </div>
-    ),
-    rawText: "Feature: Automated Life-Log. Maps spending data with location/search history to answer 'What was I doing when I spent this money?'."
+    )
   },
   // Page 13: Samsung Card AI (FabriX)
   {
@@ -384,8 +327,7 @@ const portfolioData = [
           </p>
         </div>
       </div>
-    ),
-    rawText: "Project 4: AI UX Writing Assistant. Problem: Inconsistent brand voice across 4 affiliates. Solution: Built custom assistant on Samsung FabriX (LLM) to enforce persona and guidelines."
+    )
   },
   // Page 14: Global Project (Tagless)
   {
@@ -406,8 +348,7 @@ const portfolioData = [
            <p className="text-gray-600 text-sm">UX/UI Design (100%) & Field Testing in Colombia.</p>
         </div>
       </div>
-    ),
-    rawText: "Global Project: Tagless Payment System POC in Bogota. Designed walk-through payment using Bluetooth Beacons. Role: UX/UI Design & Field Testing."
+    )
   },
   // Page 15: Global Project (Japan)
   {
@@ -430,8 +371,7 @@ const portfolioData = [
           </p>
         </div>
       </div>
-    ),
-    rawText: "Global Project: Japan Naver Design Camp. Insight: Japanese moms prioritize safety/emotion over education. Concept: Clova Sensei - AI speaker for safety checks and bonding."
+    )
   },
   // Page 16: Side Projects
   {
@@ -456,8 +396,7 @@ const portfolioData = [
           </p>
         </div>
       </div>
-    ),
-    rawText: "Side Projects. Kiip: Gamified Vitamin Habit App. Sogle Sogle: Voice-to-Subtitle/Sign Language app for hearing impaired."
+    )
   },
   // Page 17: History List
   {
@@ -498,8 +437,7 @@ const portfolioData = [
           </ul>
         </div>
       </div>
-    ),
-    rawText: "Timeline. 2025: Samsung Card Monimo UX. 2023-24: Hanwha Life Claim UX (PL). 2021-22: Hanwha D2C/Renewal. 2019-21: LG CNS Tagless/MyData."
+    )
   },
   // Page 18: Outro
   {
@@ -520,164 +458,14 @@ const portfolioData = [
             </a>
         </div>
       </div>
-    ),
-    rawText: "Contact Page. LinkedIn: https://www.linkedin.com/in/okyu59/"
+    )
   }
 ];
 
-// --- COMPONENTS FOR AI FEATURES ---
-
-// 1. AI Summary Modal Component
-const AISummaryModal = ({ isOpen, onClose, summary, isLoading }) => {
-    if (!isOpen) return null;
-    return (
-        <div className="absolute top-20 right-4 z-50 w-80 bg-white rounded-lg shadow-2xl border border-blue-100 p-4 animate-in slide-in-from-right fade-in duration-300">
-            <div className="flex justify-between items-center mb-3">
-                <div className="flex items-center gap-2">
-                    <Sparkles size={16} className="text-blue-600" />
-                    <h4 className="font-bold text-gray-900 text-sm">Gemini Insight</h4>
-                </div>
-                <button onClick={onClose} className="text-gray-400 hover:text-gray-600"><X size={16}/></button>
-            </div>
-            {isLoading ? (
-                 <div className="flex flex-col items-center justify-center py-6 space-y-3">
-                    <Loader2 className="animate-spin text-blue-600" size={24} />
-                    <span className="text-xs text-gray-500">Analyzing this page...</span>
-                 </div>
-            ) : (
-                <div className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
-                    {summary}
-                </div>
-            )}
-        </div>
-    );
-};
-
-// 2. Chat Widget Component
-const AIChatWidget = ({ isOpen, setIsOpen, portfolioContext }) => {
-    const [messages, setMessages] = useState([
-        { role: 'system', text: "Hello! I'm Okyu's AI Assistant powered by Gemini. Ask me anything about his projects, skills, or experience!" }
-    ]);
-    const [input, setInput] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const messagesEndRef = useRef(null);
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-
-    useEffect(scrollToBottom, [messages]);
-
-    const handleSend = async () => {
-        if (!input.trim()) return;
-        
-        const userMsg = input;
-        setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
-        setInput("");
-        setIsLoading(true);
-
-        // Prepare context
-        const contextString = portfolioData.map(p => `Page ${p.id} (${p.category}): ${p.rawText}`).join("\n");
-        const systemInstruction = `You are an AI assistant for Okyu Choi's UX Portfolio. 
-        You are talking to a recruiter or hiring manager. 
-        Use the following portfolio content to answer questions confidently and professionally.
-        Highlight his data-driven approach and problem-solving skills.
-        
-        Portfolio Content:
-        ${contextString}`;
-
-        const reply = await callGemini(userMsg, systemInstruction);
-        
-        setMessages(prev => [...prev, { role: 'ai', text: reply }]);
-        setIsLoading(false);
-    };
-
-    if (!isOpen) {
-        return (
-            <button 
-                onClick={() => setIsOpen(true)}
-                className="absolute bottom-6 right-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-110 z-50 flex items-center gap-2"
-            >
-                <MessageSquare size={24} />
-                <span className="font-bold text-sm pr-1">Ask AI</span>
-            </button>
-        );
-    }
-
-    return (
-        <div className="absolute bottom-6 right-6 w-80 md:w-96 h-[500px] bg-white rounded-xl shadow-2xl border border-gray-200 z-50 flex flex-col overflow-hidden animate-in slide-in-from-bottom fade-in duration-300">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 p-4 flex justify-between items-center text-white shrink-0">
-                <div className="flex items-center gap-2">
-                    <Sparkles size={18} className="text-yellow-400" />
-                    <div>
-                        <h3 className="font-bold text-sm">Portfolio Assistant</h3>
-                        <p className="text-[10px] text-gray-300">Powered by Gemini 2.5</p>
-                    </div>
-                </div>
-                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white"><X size={20}/></button>
-            </div>
-
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
-                {messages.map((msg, idx) => (
-                    <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[85%] p-3 rounded-lg text-sm ${
-                            msg.role === 'user' 
-                            ? 'bg-blue-600 text-white rounded-br-none' 
-                            : 'bg-white border border-gray-200 text-gray-700 rounded-bl-none shadow-sm'
-                        }`}>
-                            {msg.text}
-                        </div>
-                    </div>
-                ))}
-                {isLoading && (
-                    <div className="flex justify-start">
-                         <div className="bg-white border border-gray-200 p-3 rounded-lg rounded-bl-none shadow-sm flex gap-2 items-center">
-                            <Loader2 className="animate-spin text-blue-600" size={16} />
-                            <span className="text-xs text-gray-500">Typing...</span>
-                         </div>
-                    </div>
-                )}
-                <div ref={messagesEndRef} />
-            </div>
-
-            {/* Input */}
-            <div className="p-3 bg-white border-t border-gray-100 shrink-0">
-                <div className="flex gap-2">
-                    <input 
-                        type="text" 
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                        placeholder="Ask about my projects..."
-                        className="flex-1 bg-gray-100 border-0 rounded-md px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                    />
-                    <button 
-                        onClick={handleSend}
-                        disabled={!input.trim() || isLoading}
-                        className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
-                    >
-                        <Send size={18} />
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-
-// --- MAIN APP COMPONENT ---
+// --- APP COMPONENT ---
 const App = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  
-  // AI Summary State
-  const [summaryOpen, setSummaryOpen] = useState(false);
-  const [summaryText, setSummaryText] = useState("");
-  const [isSummarizing, setIsSummarizing] = useState(false);
-
   const containerRef = useRef(null);
 
   const totalPages = portfolioData.length;
@@ -703,26 +491,7 @@ const App = () => {
 
   useEffect(() => {
       if(containerRef.current) containerRef.current.scrollTop = 0;
-      // Close summary when changing pages
-      setSummaryOpen(false);
   }, [currentPage]);
-
-  // AI Function: Summarize Current Page
-  const handleSummarizePage = async () => {
-      if (summaryOpen) {
-          setSummaryOpen(false);
-          return;
-      }
-      
-      setSummaryOpen(true);
-      if (!currentData.rawText) return;
-
-      setIsSummarizing(true);
-      const prompt = `Summarize the following portfolio page content for a recruiter in one concise sentence highlighting the key impact or skill: "${currentData.rawText}"`;
-      const result = await callGemini(prompt);
-      setSummaryText(result);
-      setIsSummarizing(false);
-  };
 
   // 이미지 경로 생성 함수
   const getImagePath = (index) => `img/${index + 1}.jpg`;
@@ -784,25 +553,6 @@ const App = () => {
           ref={containerRef}
           className="w-full md:w-[400px] lg:w-[480px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10 relative"
         >
-          {/* AI Page Insight Button */}
-          <div className="absolute top-4 right-4 z-20">
-              <button 
-                onClick={handleSummarizePage}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold hover:bg-blue-100 transition-colors border border-blue-100"
-              >
-                  <Sparkles size={14} />
-                  <span>AI Insight</span>
-              </button>
-          </div>
-
-          {/* AI Summary Modal */}
-          <AISummaryModal 
-            isOpen={summaryOpen} 
-            onClose={() => setSummaryOpen(false)} 
-            summary={summaryText} 
-            isLoading={isSummarizing} 
-          />
-
           <div className="p-8 flex-1 pt-12">
             <div className="inline-block px-2 py-1 bg-gray-100 text-gray-500 text-[10px] font-bold tracking-widest uppercase mb-4 rounded-sm">
               {currentData.category}
@@ -841,10 +591,6 @@ const App = () => {
           </div>
         </div>
       </div>
-
-      {/* AI Chat Widget */}
-      <AIChatWidget isOpen={isChatOpen} setIsOpen={setIsChatOpen} portfolioContext={portfolioData} />
-
     </div>
   );
 };
