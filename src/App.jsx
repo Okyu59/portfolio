@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Mail, Menu, X, Briefcase, GraduationCap, Award, ExternalLink, Download } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Mail, Menu, X, Briefcase, GraduationCap, Award, ExternalLink, Download, Maximize2 } from 'lucide-react';
 
 // --- DATA: UX 용어 및 표현 전면 검수 완료 (Revised for Global Standards) ---
 const portfolioData = [
@@ -505,6 +505,13 @@ const App = () => {
   // 이미지 경로 생성 함수
   const getImagePath = (index) => `img/${index + 1}.jpg`;
 
+  // 모바일에서 이미지 클릭 시 새 탭 열기
+  const handleImageClick = () => {
+    if (window.innerWidth < 768) { // md breakpoint 기준
+      window.open(getImagePath(currentPage), '_blank');
+    }
+  };
+
   return (
     <div className="flex flex-col h-screen bg-neutral-900 font-sans text-gray-800 overflow-hidden relative">
       
@@ -564,8 +571,8 @@ const App = () => {
       <div className="flex flex-1 overflow-hidden flex-col md:flex-row relative">
         
         {/* LEFT/TOP: VISUAL (Image) */}
-        {/* Mobile: 45% height to ensure image visibility without cutting off */}
-        <div className="h-[45vh] md:h-auto md:flex-1 bg-neutral-900 relative flex items-center justify-center overflow-hidden p-2 md:p-8 shrink-0">
+        {/* Mobile: 45% height. Desktop: Full height (h-full) and takes remaining width (flex-1) */}
+        <div className="h-[45vh] md:h-full md:flex-1 bg-neutral-900 relative flex items-center justify-center overflow-hidden p-2 md:p-8 shrink-0 cursor-zoom-in md:cursor-default" onClick={handleImageClick}>
             <div className="relative shadow-2xl max-w-full max-h-full w-full h-full flex items-center justify-center">
                 <img 
                     src={getImagePath(currentPage)} 
@@ -576,6 +583,11 @@ const App = () => {
                         e.target.src = "https://placehold.co/800x600/333/FFF?text=Image+Not+Found\nSave+as+img/" + (currentPage + 1) + ".jpg";
                     }}
                 />
+            </div>
+            {/* Mobile-only Hint for tap */}
+            <div className="absolute bottom-4 right-4 md:hidden bg-black/60 text-white px-3 py-1.5 rounded-full text-xs flex items-center gap-1.5 backdrop-blur-sm pointer-events-none">
+                <Maximize2 size={12} />
+                <span>Tap to zoom</span>
             </div>
         </div>
 
