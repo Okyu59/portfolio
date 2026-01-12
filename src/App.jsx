@@ -594,7 +594,7 @@ const App = () => {
         {/* RIGHT/BOTTOM: CONTEXT (English Description) */}
         <div 
           ref={containerRef}
-          className="flex-1 w-full md:flex-none md:w-[380px] lg:w-[480px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10 relative pb-20 md:pb-0"
+          className="flex-1 w-full md:flex-none md:w-[320px] lg:w-[460px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10 relative pb-20 md:pb-0"
         >
           <div className="p-6 md:p-8 flex-1">
             <div className="inline-block px-2 py-1 bg-gray-100 text-gray-500 text-[10px] font-bold tracking-widest uppercase mb-4 rounded-sm">
