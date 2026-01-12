@@ -30,8 +30,9 @@ const portfolioData = [
           <h3 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><Briefcase size={16}/> Experience</h3>
           <ul className="space-y-2 text-gray-600">
             <li><strong className="text-gray-800">Samsung Card (Monimo UX)</strong> | Jun 2025 – Present</li>
-            <li><strong className="text-gray-800">Hanwha Life</strong> | Lead Product Designer (2021 – 2025)</li>
+            <li><strong className="text-gray-800">Hanwha Life Insurance</strong> | Product Designer (2021 – 2025)</li>
             <li><strong className="text-gray-800">LG CNS</strong> | UX/UI Designer (2019 – 2021)</li>
+            <li><strong className="text-gray-800">Naver</strong> | Intern (2018)</li>
           </ul>
         </div>
         <div>
@@ -48,7 +49,7 @@ const portfolioData = [
   {
     id: 3,
     category: "Project 01: Mobile Claim",
-    title: "Fail-proof Insurance Claim Experience",
+    title: "Frictionless Insurance Claims",
     subtitle: "Overview & Metrics",
     content: (
       <div className="space-y-6">
@@ -109,7 +110,7 @@ const portfolioData = [
   {
     id: 5,
     category: "Project 01: Mobile Claim",
-    title: "Solution: Plain Language & Flow",
+    title: "Solution: Plain Language & Intuitive Flow",
     subtitle: "Reducing Cognitive Load",
     content: (
       <div className="space-y-5">
@@ -138,7 +139,7 @@ const portfolioData = [
     id: 6,
     category: "Project 01: Mobile Claim",
     title: "Solution: Error Prevention (Poka-yoke)",
-    subtitle: "Smart Camera Guide",
+    subtitle: "Assisted Document Capture",
     content: (
       <div className="space-y-5">
         <div>
@@ -191,8 +192,8 @@ const portfolioData = [
   {
     id: 8,
     category: "Project 02: App Renewal",
-    title: "Customer-Centric App Renewal",
-    subtitle: "From Agent-Managed to Self-Managed",
+    title: "Customer-Centric App Redesign",
+    subtitle: "Transitioning from Agent-Led to Self-Service",
     content: (
       <div className="space-y-6">
         <div>
@@ -242,19 +243,19 @@ const portfolioData = [
     id: 10,
     category: "Project 02: App Renewal",
     title: "Solution: Data-Driven Personalization",
-    subtitle: "Relationship Building",
+    subtitle: "Building Digital Rapport",
     content: (
       <div className="space-y-5">
         <div>
-          <h4 className="font-bold text-gray-900 mb-2">Digital Nudges</h4>
+          <h4 className="font-bold text-gray-900 mb-2">Contextual Nudges</h4>
           <p className="text-gray-600 text-sm">
-            Replaced generic ads with personalized notifications for life events (birthdays, anniversaries) and contract updates, mimicking a personal agent's touch.
+            Replaced generic ads with personalized notifications for life events (birthdays, anniversaries) and contract updates, recreating the care of a dedicated agent.
           </p>
         </div>
         <div>
-          <h4 className="font-bold text-gray-900 mb-2">Value-First Information</h4>
+          <h4 className="font-bold text-gray-900 mb-2">Benefit-Centric Information Value Over Jargon</h4>
           <p className="text-gray-600 text-sm">
-             Instead of confusing product names, we highlighted <strong>"Expected Pension Amount"</strong> and <strong>"Max Coverage"</strong> to show tangible user value immediately.
+             Instead of displaying obscure product names, we highlighted <strong>"Expected Pension Amount"</strong> and <strong>"Max Coverage"</strong> to demonstrate immediate value to the user.
           </p>
         </div>
       </div>
@@ -284,7 +285,7 @@ const portfolioData = [
   {
     id: 12,
     category: "Project 03: MyData Platform",
-    title: "Feature: Automated Life-Log",
+    title: "Feature: Life-Log Timeline Adding Context to Spending",
     subtitle: "Contextualizing Finance",
     content: (
       <div className="space-y-5">
@@ -296,8 +297,8 @@ const portfolioData = [
           </p>
         </div>
         <div className="grid grid-cols-2 gap-2 text-xs text-gray-500">
-           <div className="bg-gray-100 p-2 rounded">Financial Data<br/><span className="text-gray-900 font-bold">Spending, Transfer</span></div>
-           <div className="bg-gray-100 p-2 rounded">Lifestyle Data<br/><span className="text-gray-900 font-bold">Location, Search</span></div>
+           <div className="bg-gray-100 p-2 rounded">Financial Data<br/><span className="text-gray-900 font-bold">Spending, Transfer (mydata) </span></div>
+           <div className="bg-gray-100 p-2 rounded">Lifestyle Data<br/><span className="text-gray-900 font-bold">Location, Search (Google API)</span></div>
         </div>
       </div>
     )
@@ -317,13 +318,13 @@ const portfolioData = [
         <div>
           <h4 className="font-bold text-gray-900 mb-1">Problem</h4>
           <p className="text-gray-600 text-sm">
-            In a Super-app environment merging 4 affiliates, maintaining a consistent brand voice was inefficient and prone to errors.
+            Fragmented Brand Voice In a Super-app integrating four distinct financial affiliates, maintaining a consistent brand voice was inefficient and prone to inconsistency.
           </p>
         </div>
         <div>
           <h4 className="font-bold text-gray-900 mb-1">Solution</h4>
           <p className="text-gray-600 text-sm">
-            Developed a custom internal assistant using <strong>Samsung FabriX</strong> (LLM). It enables designers to instantly generate copy that aligns with Monimo's specific persona and writing guidelines.
+            AI-Powered Writing Assistant Developed a custom internal assistant using Samsung FabriX (LLM). This tool allows designers to instantly generate copy that perfectly adheres to Monimo's persona and guidelines, significantly reducing operational time.
           </p>
         </div>
       </div>
@@ -333,19 +334,19 @@ const portfolioData = [
   {
     id: 14,
     category: "Global Project",
-    title: "Tagless Payment System",
+    title: "Tagless Fare Collection Pilot",
     subtitle: "Bogota, Colombia POC",
     content: (
       <div className="space-y-5">
         <div>
           <h4 className="font-bold text-gray-900 mb-2">Project Overview</h4>
           <p className="text-gray-600 text-sm">
-            Designed a "Walk-through" payment experience (Tagless) using Bluetooth beacon technology, eliminating the need to physically tap cards.
+            Designed a frictionless "Walk-through" payment experience leveraging Bluetooth (BLE) beacon technology. This system eliminates the need for physical card tagging, allowing commuters to pass through gates seamlessly without breaking stride.
           </p>
         </div>
         <div>
            <h4 className="font-bold text-gray-900 mb-1">Role</h4>
-           <p className="text-gray-600 text-sm">UX/UI Design (100%) & Field Testing in Colombia.</p>
+           <p className="text-gray-600 text-sm">Sole UX/UI Designer & Led the end-to-end design process</p>
         </div>
       </div>
     )
@@ -354,7 +355,7 @@ const portfolioData = [
   {
     id: 15,
     category: "Global Project",
-    title: "AI Care for Japanese Moms",
+    title: "AI Parenting Assistant for Working Moms",
     subtitle: "Naver Design Camp (Tokyo)",
     content: (
       <div className="space-y-5">
@@ -367,7 +368,7 @@ const portfolioData = [
         <div>
           <h4 className="font-bold text-gray-900 mb-2">Concept: Clova Sensei</h4>
           <p className="text-gray-600 text-sm">
-             An AI speaker-based service focusing on child safety checks and emotional bonding rather than education.
+             Clova Sensei A smart speaker service designed to foster emotional bonding and safety monitoring, deliberately shifting the focus away from traditional educational features.
           </p>
         </div>
       </div>
@@ -383,16 +384,23 @@ const portfolioData = [
       <div className="space-y-6">
         <div>
           <h4 className="font-bold text-gray-900 text-lg mb-1">Kiip</h4>
-          <p className="text-xs text-gray-500 mb-2">Gamified Habit Forming App</p>
+          <p className="text-xs text-gray-500 mb-2">Healthcare platform</p>
           <p className="text-gray-600 text-sm">
-             Designed a platform to help users form healthy habits (e.g., taking vitamins) through gamification mechanics.
+             Gamified Habit Builder Designed a platform that gamifies daily routines to help users establish healthy habits, such as taking vitamins, through engaging rewards and challenges.
+          </p>
+        </div>
+        <div className="border-t pt-4">
+          <h4 className="font-bold text-gray-900 text-lg mb-1">Square Fit Type</h4>
+          <p className="text-xs text-gray-500 mb-2">Live Home Fitness Platform</p>
+          <p className="text-gray-600 text-sm">
+             Designed a contactless matching service that connects users with expert trainers for real-time interactive workouts, addressing the need for accessible fitness during the pandemic.
           </p>
         </div>
         <div className="border-t pt-4">
           <h4 className="font-bold text-gray-900 text-lg mb-1">Sogle Sogle</h4>
-          <p className="text-xs text-gray-500 mb-2">Accessibility App</p>
+          <p className="text-xs text-gray-500 mb-2">Accessibility Communication Tool</p>
           <p className="text-gray-600 text-sm">
-             A communication tool for the hearing impaired that converts voice to subtitles and sign language in real-time.
+             A real-time communication aid for the Deaf and Hard of Hearing. It bridges the communication gap by instantly converting spoken voice into live captions and sign language.
           </p>
         </div>
       </div>
@@ -409,31 +417,32 @@ const portfolioData = [
         <div>
           <div className="font-bold text-blue-600 mb-1">2025 (Samsung Card)</div>
           <ul className="list-disc list-inside text-gray-600 pl-1 space-y-1">
-            <li>Monimo Partnership Service UX Design</li>
-            <li>Wallet Service Advanced Research</li>
+            <li>Monimo Partnership Service Design: Led UX strategy for partnership integration.</li>
+            <li>Next-Gen Wallet Research: Conducted advanced research for digital wallet services.</li>
+            <li>AI UX Initiatives: Developed an internal AI writing assistant using Samsung FabriX.</li>          
           </ul>
         </div>
         <div>
-          <div className="font-bold text-orange-600 mb-1">2023-2024 (Hanwha Life)</div>
+          <div className="font-bold text-orange-600 mb-1">2023-2024 (Hanwha Life Insurance)</div>
           <ul className="list-disc list-inside text-gray-600 pl-1 space-y-1">
-            <li>Mobile Claim Process Improvement (Project Lead)</li>
-            <li>Proxy Claim Service Construction (Project Lead)</li>
-            <li>Contractor Change Service (Project Lead)</li>
+            <li>Mobile Claim Process Optimization (Project Lead): Streamlined the claim journey for efficiency.</li>
+            <li>Proxy Claim Service Implementation (Project Lead): Designed end-to-end flows for third-party claims.</li>
+            <li>Policyholder Change Service (Project Lead): Digitized the complex contractor change process.</li>
           </ul>
         </div>
         <div>
-          <div className="font-bold text-orange-600 mb-1">2021-2022 (Hanwha Life)</div>
+          <div className="font-bold text-orange-600 mb-1">2021-2022 (Hanwha Life Insurance)</div>
           <ul className="list-disc list-inside text-gray-600 pl-1 space-y-1">
-            <li>Insurance D2C Platform Planning</li>
-            <li>Mobile App Renewal (Research & UX)</li>
+            <li>D2C Insurance Platform Strategy: Planned the Direct-to-Consumer sales platform structure.</li>
+            <li>Mobile App Redesign: Conducted user research and led the UX overhaul for the main app.</li>
           </ul>
         </div>
         <div>
           <div className="font-bold text-gray-700 mb-1">2019-2021 (LG CNS)</div>
           <ul className="list-disc list-inside text-gray-600 pl-1 space-y-1">
-            <li>Tagless Transport Card App</li>
-            <li>MyData Platform Construction</li>
-            <li>LG Group Employee ID Integration</li>
+            <li>Tagless Fare Collection Pilot: Designed a hands-free transport payment system (Bogotá POC).</li>
+            <li>MyData Platform Development: Built the UX architecture for financial data aggregation.</li>
+            <li>LG Group Unified Account Platform: Built an integrated B2C membership system connecting all LG affiliates with a single login experience.</li>
           </ul>
         </div>
       </div>
@@ -497,7 +506,7 @@ const App = () => {
   const getImagePath = (index) => `img/${index + 1}.jpg`;
 
   return (
-    <div className="flex flex-col h-screen bg-neutral-900 font-sans text-gray-800 overflow-hidden relative">
+    <div className="flex flex-col h-screen bg-neutral-900 font-sans text-gray-800 overflow-hidden">
       
       {/* HEADER */}
       <header className="flex justify-between items-center px-6 py-4 bg-white border-b border-gray-200 z-10 shrink-0 shadow-sm">
@@ -531,7 +540,7 @@ const App = () => {
       </header>
 
       {/* MAIN CONTENT */}
-      <div className="flex flex-1 overflow-hidden flex-col md:flex-row relative">
+      <div className="flex flex-1 overflow-hidden flex-col md:flex-row">
         
         {/* LEFT: VISUAL (Image) */}
         <div className="flex-1 bg-neutral-900 relative flex items-center justify-center overflow-hidden p-2 md:p-8">
@@ -551,9 +560,9 @@ const App = () => {
         {/* RIGHT: CONTEXT (English Description) */}
         <div 
           ref={containerRef}
-          className="w-full md:w-[400px] lg:w-[480px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10 relative"
+          className="w-full md:w-[400px] lg:w-[480px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10"
         >
-          <div className="p-8 flex-1 pt-12">
+          <div className="p-8 flex-1">
             <div className="inline-block px-2 py-1 bg-gray-100 text-gray-500 text-[10px] font-bold tracking-widest uppercase mb-4 rounded-sm">
               {currentData.category}
             </div>
