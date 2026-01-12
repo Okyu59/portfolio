@@ -513,7 +513,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-neutral-900 font-sans text-gray-800 overflow-hidden relative">
+    <div className="flex flex-col h-[100dvh] bg-neutral-900 font-sans text-gray-800 overflow-hidden relative">
       
       {/* HEADER */}
       <header className="flex justify-between items-center px-6 py-4 bg-white border-b border-gray-200 z-10 shrink-0 shadow-sm relative">
@@ -572,12 +572,12 @@ const App = () => {
         
         {/* LEFT/TOP: VISUAL (Image) */}
         {/* Mobile: 45% height. Desktop: Full height (h-full) and takes remaining width (flex-1) */}
-        <div className="h-[45vh] md:h-full md:flex-1 bg-neutral-900 relative flex items-center justify-center overflow-hidden p-2 md:p-8 shrink-0 cursor-zoom-in md:cursor-default" onClick={handleImageClick}>
-            <div className="relative shadow-2xl max-w-full max-h-full w-full h-full flex items-center justify-center">
+        <div className="h-[45dvh] md:h-full md:flex-1 bg-neutral-900 relative flex items-center justify-center overflow-hidden p-0 md:p-8 shrink-0 cursor-zoom-in md:cursor-default" onClick={handleImageClick}>
+            <div className="relative shadow-2xl w-full h-full flex items-center justify-center">
                 <img 
                     src={getImagePath(currentPage)} 
                     alt={`Portfolio Page ${currentPage + 1}`}
-                    className="max-w-full max-h-full object-contain mx-auto rounded-sm"
+                    className="w-full h-full object-contain mx-auto rounded-sm"
                     onError={(e) => {
                         e.target.onerror = null; 
                         e.target.src = "https://placehold.co/800x600/333/FFF?text=Image+Not+Found\nSave+as+img/" + (currentPage + 1) + ".jpg";
@@ -594,7 +594,7 @@ const App = () => {
         {/* RIGHT/BOTTOM: CONTEXT (English Description) */}
         <div 
           ref={containerRef}
-          className="flex-1 w-full md:flex-none md:w-[320px] lg:w-[460px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10 relative pb-20 md:pb-0"
+          className="flex-1 w-full md:flex-none md:w-[320px] lg:w-[460px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10 relative pb-[80px] md:pb-0"
         >
           <div className="p-6 md:p-8 flex-1">
             <div className="inline-block px-2 py-1 bg-gray-100 text-gray-500 text-[10px] font-bold tracking-widest uppercase mb-4 rounded-sm">
@@ -614,7 +614,7 @@ const App = () => {
           </div>
 
           {/* Navigation - Fixed Bottom on Mobile / Normal Flow on Desktop */}
-          <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 md:static md:w-full md:border-t-0 md:bg-gray-50 md:p-6 z-30">
+          <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 md:static md:w-full md:border-t-0 md:bg-gray-50 md:p-6 z-50">
             <div className="flex gap-3">
               <button 
                 onClick={handlePrev}
