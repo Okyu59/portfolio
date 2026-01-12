@@ -390,7 +390,7 @@ const portfolioData = [
           </p>
         </div>
         <div className="border-t pt-4">
-          <h4 className="font-bold text-gray-900 text-lg mb-1">Square Fit Type</h4>
+          <h4 className="font-bold text-gray-900 text-lg mb-1">Square Fit</h4>
           <p className="text-xs text-gray-500 mb-2">Live Home Fitness Platform</p>
           <p className="text-gray-600 text-sm">
              Designed a contactless matching service that connects users with expert trainers for real-time interactive workouts, addressing the need for accessible fitness during the pandemic.
