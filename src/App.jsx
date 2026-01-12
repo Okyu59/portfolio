@@ -506,10 +506,10 @@ const App = () => {
   const getImagePath = (index) => `img/${index + 1}.jpg`;
 
   return (
-    <div className="flex flex-col h-screen bg-neutral-900 font-sans text-gray-800 overflow-hidden">
+    <div className="flex flex-col h-screen bg-neutral-900 font-sans text-gray-800 overflow-hidden relative">
       
       {/* HEADER */}
-      <header className="flex justify-between items-center px-6 py-4 bg-white border-b border-gray-200 z-10 shrink-0 shadow-sm">
+      <header className="flex justify-between items-center px-6 py-4 bg-white border-b border-gray-200 z-10 shrink-0 shadow-sm relative">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-black rounded flex items-center justify-center text-white font-bold text-sm">
             OC
@@ -520,6 +520,7 @@ const App = () => {
           </div>
         </div>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-4">
           <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">
              Page {currentPage + 1} / {totalPages}
@@ -534,21 +535,42 @@ const App = () => {
           </a>
         </div>
 
+        {/* Mobile Hamburger Button */}
         <button className="md:hidden p-2 text-gray-600" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </header>
+      
+      {/* Mobile Menu Dropdown */}
+      {isMenuOpen && (
+        <div className="absolute top-16 left-0 w-full bg-white shadow-lg z-50 border-b border-gray-200 md:hidden animate-in slide-in-from-top-5">
+          <div className="p-4 flex flex-col gap-2">
+             <div className="text-xs text-gray-500 mb-2 px-2">
+               Page {currentPage + 1} / {totalPages}
+             </div>
+             <a
+              href="https://drive.google.com/file/d/1P0iv6keHnQmrVJIUBEvT-mIfc2dhrICT/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-4 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors text-sm font-medium"
+            >
+              <Download size={16} /> Download PDF
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* MAIN CONTENT */}
-      <div className="flex flex-1 overflow-hidden flex-col md:flex-row">
+      <div className="flex flex-1 overflow-hidden flex-col md:flex-row relative">
         
-        {/* LEFT: VISUAL (Image) */}
-        <div className="flex-1 bg-neutral-900 relative flex items-center justify-center overflow-hidden p-2 md:p-8">
-            <div className="relative shadow-2xl max-w-full max-h-full">
+        {/* LEFT/TOP: VISUAL (Image) */}
+        {/* Mobile: 45% height to ensure image visibility without cutting off */}
+        <div className="h-[45vh] md:h-auto md:flex-1 bg-neutral-900 relative flex items-center justify-center overflow-hidden p-2 md:p-8 shrink-0">
+            <div className="relative shadow-2xl max-w-full max-h-full w-full h-full flex items-center justify-center">
                 <img 
                     src={getImagePath(currentPage)} 
                     alt={`Portfolio Page ${currentPage + 1}`}
-                    className="max-w-full max-h-[85vh] object-contain mx-auto rounded-sm"
+                    className="max-w-full max-h-full object-contain mx-auto rounded-sm"
                     onError={(e) => {
                         e.target.onerror = null; 
                         e.target.src = "https://placehold.co/800x600/333/FFF?text=Image+Not+Found\nSave+as+img/" + (currentPage + 1) + ".jpg";
@@ -557,12 +579,12 @@ const App = () => {
             </div>
         </div>
 
-        {/* RIGHT: CONTEXT (English Description) */}
+        {/* RIGHT/BOTTOM: CONTEXT (English Description) */}
         <div 
           ref={containerRef}
-          className="w-full md:w-[400px] lg:w-[480px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10"
+          className="flex-1 w-full md:w-[400px] lg:w-[480px] bg-white border-l border-gray-200 overflow-y-auto flex flex-col shadow-2xl z-10 relative pb-20 md:pb-0"
         >
-          <div className="p-8 flex-1">
+          <div className="p-6 md:p-8 flex-1">
             <div className="inline-block px-2 py-1 bg-gray-100 text-gray-500 text-[10px] font-bold tracking-widest uppercase mb-4 rounded-sm">
               {currentData.category}
             </div>
@@ -579,8 +601,8 @@ const App = () => {
             </div>
           </div>
 
-          {/* Navigation */}
-          <div className="p-6 border-t border-gray-100 bg-gray-50 shrink-0">
+          {/* Navigation - Fixed Bottom on Mobile / Normal Flow on Desktop */}
+          <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 md:static md:w-full md:border-t-0 md:bg-gray-50 md:p-6 z-30">
             <div className="flex gap-3">
               <button 
                 onClick={handlePrev}
